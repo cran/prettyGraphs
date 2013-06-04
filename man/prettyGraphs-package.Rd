@@ -11,8 +11,8 @@ prettyGraphs is a package that produces simple, crisp, publication-quality graph
 \tabular{ll}{
 Package: \tab prettyGraphs\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2012-05-24\cr
+Version: \tab 2.0.3\cr
+Date: \tab 2013-06-04\cr
 License: \tab GPL-2\cr
 Suggests: ExPosition
 }

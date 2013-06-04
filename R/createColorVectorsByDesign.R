@@ -1,11 +1,16 @@
 createColorVectorsByDesign <-
-function(design_matrix){
-	cpsu <- colorPoints(design_matrix)	
-	group_colors <- matrix(cpsu$cps[,1],nrow=length(cpsu$cps[,1]),ncol=1,byrow=TRUE)
-	rownames(group_colors)<-colnames(design_matrix)
-	group_colors <- as.numeric(group_colors)
-	observation_colors <- design_matrix %*% group_colors
-	pass_group_colors <- rowSums(t(design_matrix * repmat(observation_colors,1,dim(design_matrix)[2]))) / colSums(design_matrix)
+function(design_matrix,hsv=TRUE,offset=NULL){
 
-	return(list(oc=observation_colors,gc=pass_group_colors))
+	if(hsv){
+		group_colors <- prettyGraphsHSVColorSelection(n.colors=ncol(design_matrix),offset=offset)
+	}else{
+		group_colors <- prettyGraphsColorSelection(n.colors=ncol(design_matrix),offset=offset)	
+	}
+	rownames(group_colors)<-colnames(design_matrix)
+
+	arr.ind <- which(design_matrix==1,arr.ind=TRUE)
+	arr.ind <- arr.ind[order(arr.ind[,1]),]
+	observation_colors <- as.matrix(group_colors[arr.ind[,2],1])
+	rownames(observation_colors) <- rownames(design_matrix)
+	return(list(oc=observation_colors,gc=group_colors))
 }
