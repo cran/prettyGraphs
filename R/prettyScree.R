@@ -56,7 +56,7 @@ prettyScree <- function(eigs,retain.col="mediumorchid4",dismiss.col="gray",perc.
 	dev.new()
 	par(mar=c(5, 5, 4, 5) + 0.1)
 	these.sizes <- ((log(exp.var) + abs(min(log(exp.var))))/max(log(exp.var) + abs(min(log(exp.var))))+0.1) * 3
-	plot(exp.var,axes=FALSE,ylab="",xlab="Components",type="l",main="",ylim=c(-1,max(exp.var)))
+	plot(exp.var,axes=FALSE,ylab="",xlab="Components",type="l",main=main,ylim=c(-1,max(exp.var)))
 	points(exp.var,cex= these.sizes,pch=20,col=dismiss.col)
 	points(exp.var,cex= these.sizes,pch=21,bg=color.map)		
 	box()

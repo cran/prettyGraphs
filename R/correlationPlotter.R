@@ -1,5 +1,9 @@
 correlationPlotter <-
-function(data_matrix,factor_scores,x_axis=1,y_axis=2,col=NULL,pch=NULL,xlab=NULL,ylab=NULL,main="",asp=1,dev.new=TRUE){
+function(data_matrix,factor_scores,x_axis=1,y_axis=2,
+	col=NULL,pch=NULL,xlab="",ylab="",
+	main="",axis.lwd=3,circle.lwd=3,circle.col="#00000040",
+	asp=1,dev.new=TRUE){
+		
 	if(nrow(data_matrix)==nrow(factor_scores)){
 		loadings <- cor(data_matrix,factor_scores)
 	}
@@ -15,11 +19,13 @@ function(data_matrix,factor_scores,x_axis=1,y_axis=2,col=NULL,pch=NULL,xlab=NULL
 		dev.new()
 	}
 	
-	if(!is.null(xlab) && !is.null(ylab)){
-		plotCircle(xlab=xlab,ylab=ylab,main=main,asp=asp)	
-	}else{
-		plotCircle(xlab=paste("Component ",x_axis,sep=""),ylab=paste("Component ",y_axis,sep=""),main=main,asp=asp)
-	}
+	#if(!is.null(xlab) && !is.null(ylab)){
+		plotCircle(xlab=xlab,ylab=ylab,main=main,asp=asp,
+		axis.lwd=axis.lwd,circle.lwd=circle.lwd,circle.col=circle.col)	
+	# }else{
+		# plotCircle(xlab=paste("Component ",x_axis,sep=""),ylab=paste("Component ",y_axis,sep=""),main=main,asp=asp,
+		# axis.lwd=axis.lwd,circle.lwd=circle.lwd,circle.col=circle.col)
+	# }
 	
 	if(is.null(col)){
 		col <- colorVectorIsNull(loadings)$oc
@@ -35,5 +41,7 @@ function(data_matrix,factor_scores,x_axis=1,y_axis=2,col=NULL,pch=NULL,xlab=NULL
 	new.mat[seq(2,nrow(new.mat),2),] <- loadings[,c(x_axis,y_axis)]
 	points(new.mat,type="l",col="black")
 	
-	prettyPlot(loadings,col=col,display_names=TRUE,display_points=TRUE,pch=pch,x_axis=x_axis,y_axis=y_axis,axes=FALSE,dev.new=FALSE,new.plot=FALSE)
+	prettyPlot(loadings,col=col,display_names=TRUE,display_points=TRUE,
+		pch=pch,x_axis=x_axis,y_axis=y_axis,axes=FALSE,dev.new=FALSE,new.plot=FALSE)
+	
 }

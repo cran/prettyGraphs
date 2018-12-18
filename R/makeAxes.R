@@ -1,5 +1,5 @@
 makeAxes <-
-function(axis_position_list,fg.line.width=3,fg.type="l",fg.col="black",bg.line.width=1.5,bg.lty=3,bg.col = "black"){
+function(axis_position_list,fg.line.width=3,fg.type="l",fg.col="black",bg.line.width=1.5,bg.lty=3,bg.col="black"){
 	#This should make a blank plot window with custom placed axes and labels.
 	#dev.new()
 	#not sure yet...
